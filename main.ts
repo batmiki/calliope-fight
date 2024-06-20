@@ -20,6 +20,37 @@ control.onEvent(EventBusSource.MICROBIT_ID_BUTTON_A, EventBusValue.MICROBIT_BUTT
         . . . . .
         `).showImage(0)
 })
+function Init () {
+    man = images.createImage(`
+        . . # . .
+        . # # # .
+        . . # . .
+        . # . # .
+        . . . . .
+        `)
+    ritter = images.createImage(`
+        # . # . .
+        . # # # .
+        . . # . .
+        . # . # .
+        . . . . .
+        `)
+    merged = images.createImage(`
+        . . # # .
+        . # # # #
+        . . # . .
+        . # . # .
+        . . . . .
+        `)
+    shield = images.createImage(`
+        . # # # .
+        . # . . #
+        . # # # .
+        . # . # .
+        . # . . #
+        `)
+    shield.showImage(0)
+}
 function scrollRight (num: number) {
     basic.showLeds(`
         . . . . .
@@ -53,30 +84,11 @@ function scrollRight (num: number) {
         . . . . .
         `)
 }
-let merged: Image = null
+let shield: Image = null
+let man: Image = null
 let ritter: Image = null
-let man = images.createImage(`
-    . . # . .
-    . # # # .
-    . . # . .
-    . # . # .
-    . . . . .
-    `)
-ritter = images.createImage(`
-    # . # . .
-    . # # # .
-    . . # . .
-    . # . # .
-    . . . . .
-    `)
-merged = images.createImage(`
-    . . # # .
-    . # # # #
-    . . # . .
-    . # . # .
-    . . . . .
-    `)
-man.showImage(4)
+let merged: Image = null
+Init()
 basic.forever(function () {
 	
 })
