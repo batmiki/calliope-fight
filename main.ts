@@ -11,7 +11,9 @@ control.onEvent(EventBusSource.MICROBIT_ID_BUTTON_A, EventBusValue.MICROBIT_BUTT
     EventBusSource.MICROBIT_ID_BUTTON_B,
     EventBusValue.MICROBIT_PIN_EVT_RISE
     )
-    ritter.scrollImage(1, 100)
+    ritter.scrollImage(1, 120)
+    // Lösche nicht so schnell
+    control.waitMicros(500000)
     images.createImage(`
         . . . . .
         . . . . .
