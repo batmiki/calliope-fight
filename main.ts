@@ -1,7 +1,11 @@
 control.onEvent(EventBusSource.MICROBIT_ID_BUTTON_B, EventBusValue.MICROBIT_PIN_EVT_RISE, function () {
     music.playMelody("C D E F G A B C5 ", 600)
+    control.raiseEvent(
+    EventBusSource.MICROBIT_ID_IO_P0,
+    EventBusValue.MICROBIT_EVT_ANY
+    )
 })
-control.onEvent(EventBusSource.MICROBIT_ID_BUTTON_A, EventBusValue.MICROBIT_BUTTON_EVT_CLICK, function () {
+function Szene () {
     basic.setLedColor(0x00ff00)
     scrollRight(500000)
     merged.showImage(0)
@@ -12,16 +16,7 @@ control.onEvent(EventBusSource.MICROBIT_ID_BUTTON_A, EventBusValue.MICROBIT_BUTT
     EventBusValue.MICROBIT_PIN_EVT_RISE
     )
     ritter.scrollImage(1, 120)
-    // Lösche nicht so schnell
-    control.waitMicros(500000)
-    images.createImage(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `).showImage(0)
-})
+}
 function Init () {
     man = images.createImage(`
         . . # . .
@@ -92,5 +87,14 @@ let ritter: Image = null
 let merged: Image = null
 Init()
 basic.forever(function () {
-	
+    control.waitForEvent(EventBusSource.MICROBIT_ID_BUTTON_A, EventBusValue.MICROBIT_BUTTON_EVT_CLICK)
+    Szene()
+    control.waitForEvent(EventBusSource.MICROBIT_ID_IO_P0, EventBusValue.MICROBIT_EVT_ANY)
+    images.createImage(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `).showImage(0)
 })
